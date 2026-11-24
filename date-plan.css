@@ -1,0 +1,197 @@
+.date-plan[hidden], .date-plan [hidden], .roof-next[hidden] { display: none; }
+
+.roof-next {
+  position: absolute;
+  z-index: 4;
+  bottom: max(27px, calc(env(safe-area-inset-bottom) + 16px));
+  right: max(clamp(20px, 4.6vw, 78px), env(safe-area-inset-right));
+  min-height: 44px;
+  padding-inline: 17px;
+  border-color: #fff1cf;
+  color: #412b25;
+  background: linear-gradient(112deg, #fff0c9, #edbf84);
+  box-shadow: 0 3px 22px #161018a9;
+}
+.roof-next:hover { background: #fff1ce; }
+.rooftop.is-planning::after { display: none; }
+
+.date-plan {
+  --ink: #282f28;
+  --muted: #655b50;
+  --green: #254638;
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  display: grid;
+  align-items: start;
+  grid-template-columns: minmax(0, 1fr) clamp(365px, 34vw, 510px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: #f5eddf;
+  color: var(--ink);
+  font: 650 1rem/1.4 Manrope, sans-serif;
+  color-scheme: light;
+}
+
+.date-stage {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  isolation: isolate;
+  overflow: hidden;
+  margin: 0;
+  height: 100vh;
+  height: 100dvh;
+  background: #17212f;
+}
+.date-stage .roof-art { z-index: 1; }
+.date-stage[data-roof-time="morning"] :is(.roof-art, .city-canvas) { filter: brightness(1.35) saturate(.78) sepia(.29); }
+.date-stage[data-roof-time="day"] :is(.roof-art, .city-canvas) { filter: brightness(1.51) saturate(.65) hue-rotate(13deg); }
+.date-stage[data-roof-time="evening"] :is(.roof-art, .city-canvas) { filter: brightness(1.1) saturate(1.22); }
+.date-stage[data-roof-time="night"] :is(.roof-art, .city-canvas) { filter: brightness(.88) hue-rotate(14deg); }
+.date-art {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.date-stage::after {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 55px #160d1c35;
+}
+.date-back {
+  position: absolute;
+  z-index: 4;
+  top: max(18px, env(safe-area-inset-top));
+  left: max(clamp(15px, 2.5vw, 40px), env(safe-area-inset-left));
+  padding: 0 16px;
+  min-height: 44px;
+  border: 1px solid #f7dfb58a;
+  border-radius: 100px;
+  color: #fff3de;
+  background: #20242ee8;
+  box-shadow: 0 3px 15px #14102162;
+  font: 760 .84rem/1 Manrope, sans-serif;
+  cursor: pointer;
+}
+.date-back:hover { background: #3d3743; }
+.date-back:focus-visible { outline: 2px solid #fff0c9; outline-offset: 3px; }
+
+.date-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: clamp(26px, 5vh, 56px) clamp(22px, 3vw, 52px);
+  border-left: 1px solid #b58f6580;
+  background: radial-gradient(ellipse at 12% 5%, #fff9eb, transparent 62%), #f5eddf;
+}
+#datePlanTitle {
+  margin: 0 0 clamp(19px, 3vh, 33px);
+  color: #282f28;
+  font: 720 clamp(1.48rem, 2.4vw, 2.5rem)/1.12 Unbounded, sans-serif;
+  letter-spacing: -.055em;
+  text-wrap: balance;
+  outline: none;
+}
+.date-form { display: grid; gap: clamp(12px, 2vh, 19px); }
+.date-form fieldset { margin: 0; min-width: 0; padding: 0; border: 0; }
+.date-form legend, .date-calendar > label, .date-copy > label {
+  display: block;
+  margin: 0 0 6px;
+  padding: 0;
+  color: var(--ink);
+  font-size: .89rem;
+  font-weight: 850;
+}
+.date-options { display: grid; gap: 6px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.date-times { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.date-options label { position: relative; min-width: 0; }
+.date-options input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+.date-options span {
+  display: grid;
+  place-items: center;
+  min-height: 43px;
+  box-sizing: border-box;
+  padding: 5px 2px;
+  text-align: center;
+  border: 1px solid #cdbda7;
+  border-radius: 8px;
+  background: #fffaef;
+  color: #3a3d32;
+  font-size: .89rem;
+  font-weight: 780;
+}
+.date-options label:hover span { border-color: #5a725c; }
+.date-options input:checked + span { background: var(--green); color: #fff4dd; border-color: var(--green); }
+.date-panel :is(button, input, textarea):focus-visible,
+.date-options input:focus-visible + span { outline: 2px solid var(--green); outline-offset: 3px; }
+.date-calendar input, .date-copy textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 43px;
+  box-sizing: border-box;
+  padding: 6px 11px;
+  border: 1px solid #bfae95;
+  border-radius: 8px;
+  color: var(--ink);
+  background: #fffaef;
+  font: 770 1rem/1.35 Manrope, sans-serif;
+}
+.date-chosen { margin: 5px 0 0; color: var(--muted); font-size: .89rem; }
+.date-primary, .date-edit {
+  min-height: 46px;
+  padding: 9px 13px;
+  border: 1px solid var(--green);
+  border-radius: 8px;
+  color: #fff7e5;
+  background: var(--green);
+  font: 850 .94rem/1.2 Manrope, sans-serif;
+  cursor: pointer;
+}
+.date-primary:hover:not(:disabled) { background: #325746; }
+.date-primary:disabled { background: #ddd5c6; color: #5f584b; border-color: #cfc2ab; cursor: default; }
+.date-summary { margin-top: 18px; border-top: 1px solid #bca98e; padding-top: 12px; }
+.date-panel > .date-form[hidden] + .date-summary { margin-top: 0; }
+.date-summary h3 { margin: 0 0 7px; font-size: 1rem; }
+.date-summary dl { display: grid; gap: 5px; margin: 0; font-size: .875rem; }
+.date-summary dl div { display: grid; grid-template-columns: auto 1fr; gap: 12px; }
+.date-summary dt { color: var(--muted); }
+.date-summary dd { margin: 0; font-weight: 850; text-align: right; }
+.date-actions { display: grid; gap: 8px; margin-top: 18px; }
+.date-edit { border-color: #a7977f; color: var(--green); background: transparent; }
+.date-edit:hover { background: #eae0cf; }
+.date-copy, .date-status:not(:empty) { margin-top: 10px; }
+.date-status { margin: 0; min-width: 0; color: var(--muted); font-size: .875rem; }
+
+@media (max-width: 760px) {
+  .date-plan { display: block; }
+  .date-stage { height: 42vh; height: clamp(164px, 42svh, 365px); }
+  .date-panel { min-height: 0; padding: 22px max(16px, env(safe-area-inset-right)) max(25px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); border-left: 0; border-top: 1px solid #b58f65; }
+  .date-options span { min-height: 44px; }
+  .date-plan { scroll-padding-top: calc(clamp(164px, 42svh, 365px) + 12px); }
+  .date-back { top: max(10px, env(safe-area-inset-top)); }
+  #datePlanTitle { margin-bottom: 18px; }
+}
+@media (max-width: 560px) {
+  .roof-next { right: auto; left: max(20px, env(safe-area-inset-left)); bottom: max(16px, calc(env(safe-area-inset-bottom) + 8px)); }
+  .rooftop:has(.roof-next:not([hidden])) .roof-caption { bottom: max(70px, calc(env(safe-area-inset-bottom) + 61px)); }
+}

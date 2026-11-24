@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183d32">
+  <meta name="description" content="Наше маленькое путешествие. Два года, ты и я.">
+  <title>Только ты и я · Наше путешествие</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Ctext y='40' font-size='40'%3E🧸%3C/text%3E%3C/svg%3E">
+  <link rel="preload" as="image" href="assets/teddy-body.png">
+  <link rel="preload" as="image" href="assets/teddy-bent-arm-smooth.png">
+  <link rel="preload" as="image" href="assets/teddy-palm.png">
+  <link rel="preload" as="image" href="assets/gifts/dawn.webp" fetchpriority="low">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="gifts.css?v=box-letters">
+  <link rel="stylesheet" href="garden.css">
+  <link rel="stylesheet" href="chapter.css?v=world-secrets">
+  <link rel="stylesheet" href="rooftop.css?v=date-plan">
+  <link rel="stylesheet" href="date-plan.css">
+  <link rel="preload" href="assets/fonts/unbounded.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/manrope.ttf" as="font" type="font/ttf" crossorigin>
+  <script src="script.js?v=memories-copy" defer></script>
+  <script src="gifts.js?v=home-copy" defer></script>
+  <script src="garden.js?v=memories-copy" defer></script>
+  <script src="secret-effects.js?v=ribbons-2" defer></script>
+  <script src="scene-secrets.js?v=world-secrets" defer></script>
+  <script src="date-scenes.js?v=lounge-rink" defer></script>
+  <script src="date-plan.js" defer></script>
+  <script src="rooftop.js?v=lounge-rink" defer></script>
+  <script src="chapter.js?v=home-copy" defer></script>
+</head>
+<body>
+  <main class="scene" id="scene">
+    <div class="grain" aria-hidden="true"></div>
+    <div class="love-fill" aria-hidden="true"></div>
+    <div class="halo" aria-hidden="true"></div>
+    <div class="magic-light" aria-hidden="true"></div>
+    <svg class="sky-heart" viewBox="0 0 1000 800" aria-hidden="true"><path d="M500 730C435 650 90 420 90 240C90 15 390 0 500 185C610 0 910 15 910 240C910 420 565 650 500 730Z"/></svg>
+    <div id="magicParticles" aria-hidden="true"></div>
+    <div class="orbit orbit-one" aria-hidden="true"></div>
+    <div class="orbit orbit-two" aria-hidden="true"></div>
+    <div class="fireflies" id="fireflies" aria-hidden="true"></div>
+    <div class="journey-light" aria-hidden="true"></div>
+    <div class="walk-track" id="walkTrack">
+    <div class="intro-panel" id="introPanel">
+    <button class="dedication secret-years" id="yearsSecret" type="button" aria-label="Два года вместе — секрет"><span class="tiny-heart">♡</span> ТЫ + Я <b>два года вместе</b></button>
+    <section class="invitation" aria-labelledby="title">
+      <p class="eyebrow">Я КОЕ-ЧТО ПРИГОТОВИЛ ДЛЯ ТЕБЯ</p>
+      <h1 id="title">МЫ С ТОБОЙ.<br><em>УЖЕ ДВА ГОДА.</em></h1>
+      <p class="subtitle">Я проведу тебя в наше путешествие. <strong>Бери за лапу ↙</strong></p>
+    </section>
+    <div class="side-note" aria-hidden="true"><span>psst…</span>кажется, он уже<br>тебя заметил <svg viewBox="0 0 90 65"><path d="M4 5Q70 0 66 51m-12-9 12 11 11-12"/></svg></div>
+    <div class="bear-stage realistic" id="bearStage">
+      <img id="bearFallback" class="real-bear-image" src="assets/teddy-body.png" alt="Пушистый плюшевый мишка с зелёным бантом протягивает лапу с сердечком" draggable="false">
+      <img id="forearmImage" class="real-bear-image" src="assets/teddy-bent-arm-smooth.png" alt="" aria-hidden="true" draggable="false">
+      <img id="pawImage" class="real-bear-image" src="assets/teddy-palm.png" alt="" aria-hidden="true" draggable="false">
+      <img id="companionImage" class="real-bear-image" src="assets/teddy-realistic.png" alt="Маленький мишка-спутник машет лапой" draggable="false">
+      <canvas id="bearCanvas" aria-hidden="true"></canvas>
+      <button class="paw-target" id="takePaw" type="button" aria-label="Взять мишку за лапу и начать путешествие"></button>
+      <button id="noseSecret" class="nose-target" type="button" aria-label="Потрогать нос мишки"></button>
+      <div class="bear-blush" aria-hidden="true"></div><span class="nose-doodle" id="noseDoodle" aria-hidden="true"></span>
+    </div>
+    <button class="love-sticker" id="heartSecret" type="button" aria-label="Секретное сердечко"><span>♡</span>100%<br>твой мишка</button>
+    <div class="secret-note" id="secretNote" aria-hidden="true">большой мишка.<br>ещё больше любви.<span>✳</span></div>
+    <div class="constellation" id="constellation" hidden>
+      <svg viewBox="0 0 180 130" aria-hidden="true"><path d="M25 28Q65 85 145 65"/><text x="79" y="55">♡</text></svg>
+      <button class="love-star star-you" id="starYou" type="button" aria-label="Зажечь звезду Ты">✦<span>ты</span></button>
+      <button class="love-star star-me" id="starMe" type="button" aria-label="Зажечь звезду Я">✦<span>я</span></button>
+      <p id="starCaption">зажги свою звезду<br>и мою рядом</p>
+    </div>
+    <div id="loveGame" class="love-game"></div>
+    <div class="secret-counter" id="secretCounter">СЕКРЕТИКИ <span>0 / 3</span></div>
+    <div class="paw-caption" id="pawCaption"><span class="caption-line"></span><span id="hint">протяни ему руку</span><span class="caption-heart">♡</span></div>
+    <footer class="scene-footer"><span>СОЗДАНО С ЛЮБОВЬЮ. ДЛЯ ТЕБЯ.</span><span class="chapter"><i></i> НАЧАЛО НАШЕЙ ИСТОРИИ <b>01 / ∞</b></span></footer>
+    </div>
+    <section class="journey-panel" id="transition" aria-labelledby="giftTitle" tabindex="-1" hidden inert>
+      <div class="garden-fireflies" aria-hidden="true"></div>
+      <div class="garden-fx" aria-hidden="true"></div>
+      <div class="gift-room">
+        <nav class="gift-nav" aria-label="Путешествие">
+          <button class="gift-pill" id="journeyBack" type="button">К мишке</button>
+          <p class="gift-progress" id="giftProgress" aria-live="polite"><span aria-hidden="true"><i></i><i></i><i></i></span><b>Открыто 0 из 3</b></p>
+        </nav>
+        <header class="gift-heading">
+          <h2 id="giftTitle">Три коробки <em>для тебя.</em></h2>
+          <p>Открой любую. Там моменты, к которым мне хочется возвращаться.</p>
+        </header>
+        <div class="gift-shelf" id="giftShelf"></div>
+        <footer class="garden-footer">
+          <div class="garden-discoveries" role="group" aria-label="Секреты сада">
+            <button class="garden-secret garden-lantern" type="button" aria-label="Посветить фонарём" aria-haspopup="dialog" data-secret="lantern">
+              <img class="garden-token" src="assets/gifts/lantern.webp" alt="" draggable="false">
+            </button>
+            <button class="garden-secret garden-envelope" type="button" aria-label="Открыть запечатанную записку" aria-haspopup="dialog" data-secret="letter">
+              <img class="garden-token" src="assets/gifts/letter.webp" alt="" draggable="false">
+            </button>
+            <button class="garden-secret garden-moth" type="button" aria-label="Проследить за мотыльком" aria-haspopup="dialog" data-secret="moth">
+              <img class="garden-token" src="assets/gifts/moth.webp" alt="" draggable="false">
+            </button>
+          </div>
+          <p class="garden-count" id="gardenCount" aria-live="polite">Воспоминания сада <b>0 / 3</b></p>
+          <div class="garden-actions">
+            <button class="garden-join" type="button" hidden>Собрать три кадра</button>
+            <button class="chapter-gate" id="chapterGate" type="button" aria-controls="lastChapter" hidden>Потянуть за золотую нить</button>
+          </div>
+        </footer>
+      </div>
+    </section>
+    </div>
+    <div class="sr-only" id="announcement" aria-live="polite"></div>
+  </main>
+  <section class="last-chapter" id="lastChapter" aria-labelledby="lastTitle" hidden inert>
+    <div class="city-scroll" tabindex="0" role="region" aria-labelledby="lastTitle" aria-describedby="cityHint">
+      <nav class="last-navigation" aria-label="Путешествие">
+        <button class="gift-pill" id="chapterReturn" type="button">Вернуться в сад</button>
+      </nav>
+      <div class="scene-secrets city-secrets" role="group" aria-label="Секреты вечернего города" hidden>
+        <canvas aria-hidden="true"></canvas>
+        <p class="secret-tally"><i aria-hidden="true">✧</i><span>Секреты 0/3</span></p>
+        <p class="sr-only" role="status"></p>
+      </div>
+      <div class="city-flight" aria-hidden="true">
+        <div class="city-stage">
+          <canvas class="city-canvas"></canvas>
+        </div>
+      </div>
+      <div class="city-intro">
+        <h2 id="lastTitle">Вечерний город</h2>
+        <p id="cityHint">Листай, чтобы полететь</p>
+      </div>
+      <div class="city-stills" hidden></div>
+    </div>
+    <button class="gift-pill city-approach" id="cityApproach" type="button" aria-controls="rooftop" hidden>
+      <span>Подойти к столу</span><span class="city-approach-arrow" aria-hidden="true">↗</span>
+    </button>
+    <section class="rooftop" id="rooftop" aria-labelledby="rooftopTitle" hidden inert>
+      <canvas class="roof-art" aria-hidden="true"></canvas>
+      <nav aria-label="Путешествие на крыше">
+        <button class="gift-pill roof-return" type="button">К финалу полёта</button>
+      </nav>
+      <div class="roof-caption">
+        <h2 id="rooftopTitle" tabindex="-1">Мишка всё подготовил. Почти</h2>
+        <p class="roof-cue">Сейчас накроем стол. Кофе ещё горячий.</p>
+      </div>
+      <button class="roof-target" id="catchBlanket" type="button" hidden><span>Поймай скатерть</span></button>
+      <button class="roof-target" id="connectGarland" type="button" hidden><span>Подключи гирлянду</span></button>
+      <button class="gift-pill roof-next" id="openDatePlan" type="button" aria-controls="datePlan" hidden>А что дальше?</button>
+      <p class="sr-only roof-status" role="status"></p>
+      <div class="scene-secrets roof-secrets" role="group" aria-label="Секреты крыши" hidden>
+        <canvas aria-hidden="true"></canvas>
+        <p class="secret-tally"><i aria-hidden="true">✧</i><span>Секреты 0/3</span></p>
+        <p class="sr-only" role="status"></p>
+      </div>
+      <section class="date-plan" id="datePlan" aria-labelledby="datePlanTitle" hidden inert>
+        <figure class="date-stage">
+          <canvas class="date-art" aria-hidden="true" hidden></canvas>
+          <button class="date-back" type="button">На крышу</button>
+          <figcaption class="sr-only" id="dateSceneDescription" aria-live="polite"></figcaption>
+        </figure>
+        <div class="date-panel">
+          <h2 id="datePlanTitle" tabindex="-1">Как проведём наш день?</h2>
+          <form class="date-form">
+            <fieldset>
+              <legend>Где начнём?</legend>
+              <div class="date-options">
+                <label><input type="radio" name="place" value="home" required><span>Дома</span></label>
+                <label><input type="radio" name="place" value="out" required><span>Вне дома</span></label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Что будем делать?</legend>
+              <div class="date-options">
+                <label><input type="radio" name="activity" value="drinks" required><span>Бухать</span></label>
+                <label><input type="radio" name="activity" value="skate" required><span>Каток</span></label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Когда?</legend>
+              <div class="date-options date-times">
+                <label><input type="radio" name="time" value="morning" required><span>Утром</span></label>
+                <label><input type="radio" name="time" value="day" required><span>Днём</span></label>
+                <label><input type="radio" name="time" value="evening" required><span>Вечером</span></label>
+                <label><input type="radio" name="time" value="night" required><span>Ночью</span></label>
+              </div>
+            </fieldset>
+            <div class="date-calendar">
+              <label for="datePlanDay">Какой день у тебя свободен?</label>
+              <input type="date" id="datePlanDay" name="date" required>
+              <p class="date-chosen" hidden></p>
+            </div>
+            <button class="date-primary date-confirm" type="submit" disabled>Это наш план</button>
+          </form>
+          <div class="date-summary" hidden>
+            <h3 tabindex="-1">Наш план</h3>
+            <dl><div><dt>Где начнём</dt><dd data-answer="place"></dd></div>
+              <div><dt>Что будем делать</dt><dd data-answer="activity"></dd></div>
+              <div><dt>Когда</dt><dd data-answer="time"></dd></div>
+              <div><dt>Дата</dt><dd data-answer="date"></dd></div></dl>
+          </div>
+          <div class="date-actions" hidden>
+            <button class="date-primary date-share" type="button">Поделиться планом</button>
+            <button class="date-edit" type="button">Изменить выбор</button>
+          </div>
+          <div class="date-copy" hidden>
+            <label for="datePlanCopy">Текст для отправки</label>
+            <textarea id="datePlanCopy" rows="5" readonly></textarea>
+          </div>
+          <p class="date-status" role="status"></p>
+        </div>
+      </section>
+    </section>
+  </section>
+  <canvas id="chapterBridge" class="chapter-bridge" aria-hidden="true" hidden></canvas>
+  <dialog class="gift-dialog" id="giftDialog" aria-labelledby="boardTitle">
+    <div class="gift-theatre" aria-hidden="true">
+      <div class="gift-flare"></div>
+      <div class="gift-double-ring"></div>
+      <div class="gift-sparks"></div>
+    </div>
+    <div class="board-scroll">
+      <article class="gift-board" id="giftBoard" inert>
+        <header class="board-heading">
+          <div><h2 id="boardTitle"></h2><p id="boardNote"></p></div>
+          <button class="gift-pill board-close" type="button">К коробкам</button>
+        </header>
+        <div class="photo-board">
+          <div class="photo-threads" aria-hidden="true"></div>
+          <div class="photo-deck"></div>
+        </div>
+        <details class="board-letter">
+          <summary><span class="board-letter-seal" aria-hidden="true">♥</span><span class="sr-only">Записка из коробки</span></summary>
+          <p class="board-letter-copy"></p>
+        </details>
+      </article>
+    </div>
+  </dialog>
+  <dialog class="photo-dialog" id="photoDialog" aria-label="Просмотр фотографий">
+    <div class="photo-viewer">
+      <button class="gift-pill photo-close" type="button" autofocus>Закрыть</button>
+      <figure class="photo-focus">
+        <div class="photo-focus-image"><img id="fullPhoto" alt=""></div>
+        <figcaption id="fullPhotoCaption"></figcaption>
+      </figure>
+      <nav class="photo-controls" aria-label="Листать фотографии">
+        <button class="gift-pill photo-prev" type="button" aria-label="Предыдущая фотография">‹</button>
+        <output id="photoCount" aria-live="polite"></output>
+        <button class="gift-pill photo-next" type="button" aria-label="Следующая фотография">›</button>
+      </nav>
+    </div>
+  </dialog>
+  <dialog class="garden-memory" id="gardenMemory" aria-labelledby="memoryTitle">
+    <div class="memory-inner">
+      <button class="gift-pill memory-close" type="button" autofocus>В сад</button>
+      <article class="memory-episode">
+        <div class="memory-stage">
+          <div class="memory-scenery" aria-hidden="true"><img alt=""></div>
+          <figure class="memory-frame">
+            <div class="memory-photo-window">
+              <img class="memory-photo" alt="">
+              <img class="memory-lit-photo" alt="" aria-hidden="true">
+              <div class="memory-spots" role="group" aria-label="Детали фотографии" hidden>
+                <button type="button" style="--spot-x:63%;--spot-y:24%" aria-label="Посветить на лицо"></button>
+                <button type="button" style="--spot-x:54%;--spot-y:73%" aria-label="Посветить на скейт"></button>
+                <button type="button" style="--spot-x:22%;--spot-y:63%" aria-label="Посветить на траву"></button>
+              </div>
+              <div class="memory-reticle" aria-hidden="true"></div>
+            </div>
+          </figure>
+          <div class="memory-envelope" aria-hidden="true"><img src="assets/gifts/letter.webp" alt=""></div>
+          <img class="memory-side-prop" alt="" aria-hidden="true">
+        </div>
+        <div class="memory-copy">
+          <p class="memory-source"></p>
+          <h2 id="memoryTitle"></h2>
+          <p class="memory-hint" aria-live="polite"></p>
+          <div class="memory-focus" hidden>
+            <label for="memoryFocus">Резкость</label>
+            <input id="memoryFocus" type="range" min="0" max="100" value="15">
+            <button class="gift-pill memory-develop" type="button" disabled>Проявить снимок</button>
+          </div>
+          <button class="gift-pill memory-unfold" type="button" hidden>Снять печать</button>
+          <p class="memory-caption" hidden></p>
+          <button class="gift-pill memory-finale-button" type="button" hidden>Собрать три кадра</button>
+        </div>
+      </article>
+      <article class="memory-finale" hidden>
+        <h2 id="memoryFinaleTitle">Три кадра о нас</h2>
+        <div class="memory-triptych">
+          <figure><img src="assets/memories/29.webp" alt="Со скейтом в солнечном парке" loading="lazy"><figcaption>Доска в парке</figcaption></figure>
+          <figure><img src="assets/memories/03.webp" alt="Улыбка и поцелуй в щёку" loading="lazy"><figcaption>Поцелуй в щёку</figcaption></figure>
+          <figure><img src="assets/memories/20.webp" alt="С букетом на вечерней улице" loading="lazy"><figcaption>Цветы среди огней</figcaption></figure>
+        </div>
+        <p>За эти два года у нас было столько прогулок, поцелуев и вечеров вдвоём. Я люблю пересматривать эти кадры и думать, сколько хороших дней у нас ещё впереди.</p>
+      </article>
+    </div>
+  </dialog>
+</body>
+</html>
